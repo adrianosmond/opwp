@@ -1,33 +1,32 @@
+import { Person } from '@/types';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 
-export type SliderPosition = 'left' | 'right' | undefined;
-
 const Slider = ({
   label,
-  position,
-  setPosition,
+  person,
+  setPerson,
 }: {
   label: string;
-  setPosition: (pos?: SliderPosition) => void;
-  position?: SliderPosition;
+  person: Person;
+  setPerson: (person: Person) => void;
 }) => (
   <div
     onClick={(e) => {
       if (e.clientX < window.innerWidth / 3) {
-        setPosition('left');
+        setPerson('ADRIAN');
       } else if (e.clientX > (2 * window.innerWidth) / 3) {
-        setPosition('right');
+        setPerson('DINA');
       } else {
-        setPosition(undefined);
+        setPerson(null);
       }
     }}
     className={classNames({
       'rounded-full shadow-inner bg-slate-200 border border-slate-300 flex':
         true,
-      'justify-start': position === 'left',
-      'justify-end': position === 'right',
-      'justify-center': position === undefined,
+      'justify-start': person === 'ADRIAN',
+      'justify-end': person === 'DINA',
+      'justify-center': person === null,
     })}
   >
     <motion.div

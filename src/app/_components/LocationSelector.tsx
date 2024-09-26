@@ -1,20 +1,19 @@
+import { type Location } from '../../types';
 import classNames from 'classnames';
 
-export type LocationOption = 'home' | 'office' | 'away' | undefined;
-
-const Location = ({
+const LocationSelector = ({
   location,
   setLocation,
 }: {
-  location: LocationOption;
-  setLocation: (loc: LocationOption) => void;
+  location: Location;
+  setLocation: (loc: Location) => void;
 }) => (
   <div className="flex">
     <button
-      onClick={() => setLocation('home')}
+      onClick={() => setLocation('HOME')}
       className={classNames([
         'rounded-l-full p-2 pl-3',
-        location === 'home' ? 'bg-blue-800' : 'bg-blue-600',
+        location === 'HOME' ? 'bg-blue-800' : 'bg-blue-600',
       ])}
     >
       <svg
@@ -26,10 +25,10 @@ const Location = ({
       </svg>
     </button>
     <button
-      onClick={() => setLocation('office')}
+      onClick={() => setLocation('OFFICE')}
       className={classNames([
         'p-2 border-l border-r border-blue-800',
-        location === 'office' ? 'bg-blue-800' : 'bg-blue-600',
+        location === 'OFFICE' ? 'bg-blue-800' : 'bg-blue-600',
       ])}
     >
       <svg
@@ -41,10 +40,10 @@ const Location = ({
       </svg>
     </button>
     <button
-      onClick={() => setLocation('away')}
+      onClick={() => setLocation('AWAY')}
       className={classNames([
         'rounded-r-full p-2 pr-3',
-        location === 'away' ? 'bg-blue-800' : 'bg-blue-600',
+        location === 'AWAY' ? 'bg-blue-800' : 'bg-blue-600',
       ])}
     >
       <svg
@@ -58,4 +57,4 @@ const Location = ({
   </div>
 );
 
-export default Location;
+export default LocationSelector;
