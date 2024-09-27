@@ -12,16 +12,16 @@ const tasks: [Task, string][] = [
   ['cooking', 'Cooking'],
 ];
 
-type InitialValues = Record<Task, Person> & Record<LocationTask, Location>;
+type Properties = Record<Task, Person> & Record<LocationTask, Location>;
 
 const Day = ({
   id,
   label,
-  initialValues,
+  properties,
 }: {
   id: number;
   label: string;
-  initialValues: InitialValues;
+  properties: Properties;
 }) => {
   return (
     <>
@@ -31,14 +31,14 @@ const Day = ({
       <div className="flex justify-start">
         <OptimisticLocation
           dayId={id}
-          initialValue={initialValues.adrianLocation}
+          location={properties.adrianLocation}
           person="ADRIAN"
         />
       </div>
       <div className="flex justify-end">
         <OptimisticLocation
           dayId={id}
-          initialValue={initialValues.dinaLocation}
+          location={properties.dinaLocation}
           person="DINA"
         />
       </div>
@@ -47,7 +47,7 @@ const Day = ({
           <OptimisticTask
             label={label}
             dayId={id}
-            initialValue={initialValues[task]}
+            person={properties[task]}
             task={task}
           />
         </div>

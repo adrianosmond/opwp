@@ -1,4 +1,4 @@
-import { type Location } from '../../types';
+import { type Location } from '@/types';
 import classNames from 'classnames';
 
 const LocationSelector = ({

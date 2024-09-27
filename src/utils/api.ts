@@ -34,3 +34,16 @@ export const setTask = (dayId: number, task: Task, person: Person | null) =>
       id: dayId,
     },
   });
+
+export const resetAllDays = () =>
+  prisma.day.updateMany({
+    data: {
+      adrianLocation: null,
+      dinaLocation: null,
+      cooking: null,
+      ellieAM: null,
+      elliePM: null,
+      ollieAM: null,
+      olliePM: null,
+    },
+  });

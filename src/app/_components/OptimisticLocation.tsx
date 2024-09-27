@@ -1,25 +1,31 @@
 import { Location, Person } from '@/types';
-import { useState } from 'react';
+import { useOptimistic, useTransition } from 'react';
 import LocationSelector from './LocationSelector';
 import { handleLocationChange } from '@/utils/actions';
 
 const OptimisticLocation = ({
   dayId,
   person,
-  initialValue,
+  location,
 }: {
   dayId: number;
   person: NonNullable<Person>;
-  initialValue: Location;
+  location: Location;
 }) => {
-  const [location, setLocation] = useState<Location>(initialValue);
+  const [, startTransition] = useTransition();
+  const [optimisticLocation, updateOptimisticLocation] = useOptimistic<
+    Location,
+    Location
+  >(location, (_, l) => l);
 
   return (
     <LocationSelector
-      location={location}
+      location={optimisticLocation}
       setLocation={(loc) => {
-        setLocation(loc);
-        handleLocationChange(dayId, person, loc);
+        startTransition(async () => {
+          updateOptimisticLocation(loc);
+          await handleLocationChange(dayId, person, loc);
+        });
       }}
     />
   );

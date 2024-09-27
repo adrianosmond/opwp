@@ -1,5 +1,5 @@
 import { Person, Task } from '@/types';
-import { useState } from 'react';
+import { useOptimistic, useTransition } from 'react';
 import Slider from './Slider';
 import { handleTaskChange } from '@/utils/actions';
 
@@ -7,22 +7,28 @@ const OptimisticTask = ({
   dayId,
   label,
   task,
-  initialValue,
+  person,
 }: {
   dayId: number;
   label: string;
   task: Task;
-  initialValue: Person;
+  person: Person;
 }) => {
-  const [person, setPerson] = useState<Person>(initialValue);
+  const [, startTransition] = useTransition();
+  const [optimisticPerson, updateOptimisticPerson] = useOptimistic<
+    Person,
+    Person
+  >(person, (_, p) => p);
 
   return (
     <Slider
       label={label}
-      person={person}
+      person={optimisticPerson}
       setPerson={(person) => {
-        setPerson(person);
-        handleTaskChange(dayId, task, person);
+        startTransition(async () => {
+          updateOptimisticPerson(person);
+          await handleTaskChange(dayId, task, person);
+        });
       }}
     />
   );

@@ -1,6 +1,7 @@
 import { getWeek } from '@/utils/api';
 import Day from './_components/Day';
 import Header from './_components/Header';
+import ResetButton from './_components/ResetButton';
 
 export default async function Home() {
   const week = await getWeek();
@@ -11,10 +12,9 @@ export default async function Home() {
         <Header />
         {week.map((day) => {
           const { id, name, ...properties } = day;
-          return (
-            <Day key={id} id={id} label={name} initialValues={properties} />
-          );
+          return <Day key={id} id={id} label={name} properties={properties} />;
         })}
+        <ResetButton className="mt-4 col-span-2" />
       </div>
     </>
   );
