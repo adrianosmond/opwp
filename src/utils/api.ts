@@ -1,6 +1,7 @@
 import { Location, Person } from '@prisma/client';
 import { prisma } from './db';
 import { Task } from '@/types';
+import { EMPTY_DAY } from '@/constants';
 
 export const getWeek = () =>
   prisma.day.findMany({
@@ -37,13 +38,5 @@ export const setTask = (dayId: number, task: Task, person: Person | null) =>
 
 export const resetAllDays = () =>
   prisma.day.updateMany({
-    data: {
-      adrianLocation: null,
-      dinaLocation: null,
-      cooking: null,
-      ellieAM: null,
-      elliePM: null,
-      ollieAM: null,
-      olliePM: null,
-    },
+    data: EMPTY_DAY,
   });

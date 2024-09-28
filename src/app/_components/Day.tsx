@@ -1,8 +1,8 @@
 'use client';
 
-import type { Location, LocationTask, Person, Task } from '@/types';
-import OptimisticLocation from './OptimisticLocation';
-import OptimisticTask from './OptimisticTask';
+import type { DayInfo, Task } from '@/types';
+import LocationRow from './LocationRow';
+import TaskRow from './TaskRow';
 
 const tasks: [Task, string][] = [
   ['ollieAM', 'Ollie AM'],
@@ -12,47 +12,37 @@ const tasks: [Task, string][] = [
   ['cooking', 'Cooking'],
 ];
 
-type Properties = Record<Task, Person> & Record<LocationTask, Location>;
-
 const Day = ({
   id,
   label,
-  properties,
+  dayInfo,
 }: {
   id: number;
   label: string;
-  properties: Properties;
+  dayInfo: DayInfo;
 }) => {
   return (
     <>
-      <h2 className="col-span-2 text-left font-semibold sticky top-12 font-mono bg-slate-100 pb-1">
+      <h2 className="col-span-2 font-semibold sticky top-12 font-mono bg-slate-100 pb-1">
         {label}
       </h2>
-      <div className="flex justify-start">
-        <OptimisticLocation
-          dayId={id}
-          location={properties.adrianLocation}
-          person="ADRIAN"
-        />
-      </div>
-      <div className="flex justify-end">
-        <OptimisticLocation
-          dayId={id}
-          location={properties.dinaLocation}
-          person="DINA"
-        />
-      </div>
+      <LocationRow
+        dayId={id}
+        location={dayInfo.adrianLocation}
+        person="ADRIAN"
+      />
+      <LocationRow dayId={id} location={dayInfo.dinaLocation} person="DINA" />
       {tasks.map(([task, label]) => (
-        <div className="col-span-2" key={task}>
-          <OptimisticTask
+        <div key={task} className="col-span-2">
+          <TaskRow
             label={label}
             dayId={id}
-            person={properties[task]}
+            person={dayInfo[task]}
             task={task}
           />
         </div>
       ))}
-      <div className="mb-4" />
+      <div className="mb-1" />
     </>
   );
 };
