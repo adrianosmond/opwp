@@ -1,17 +1,33 @@
 'use client';
 
-import { useOptimistic, useTransition } from 'react';
+import { useEffect, useOptimistic, useRef, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
 import { resetWeek } from '@/utils/actions';
 import { EMPTY_DAY } from '@/constants';
 import type { Week } from '@/types';
 import Day from './Day';
+import { useVisibilityChange } from '../_hooks/usePageVisibilityChange';
 
 const Week = ({ week }: { week: Week }) => {
+  const router = useRouter();
+  const pageVisible = useVisibilityChange();
+  const firstLoad = useRef(true);
   const [optimisticWeek, updateOptimisticWeek] = useOptimistic<Week, Week>(
     week,
     (_, val) => val,
   );
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      return;
+    }
+
+    if (pageVisible) {
+      router.refresh();
+    }
+  }, [pageVisible, router]);
 
   return (
     <>
