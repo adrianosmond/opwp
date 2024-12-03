@@ -7,31 +7,32 @@
     "prebuild": "prisma generate",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^5.20.0",
+    "@prisma/client": "^6.0.1",
     "classnames": "^2.5.1",
-    "framer-motion": "^11.9.0",
+    "framer-motion": "^11.13.1",
     "next": "14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
+    "@eslint/js": "^9.16.0",
     "@types/eslint__js": "^8.42.3",
-    "@types/node": "22.7.4",
-    "@types/react": "^18.3.10",
-    "@types/react-dom": "^18.3.0",
-    "eslint": "^9.11.1",
+    "@types/node": "22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react-hooks": "^5.1.0-rc-2d16326d-20240930",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
-    "prisma": "^5.20.0",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.8.0"
+    "eslint-plugin-react-hooks": "^5.1.0-rc.1",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.1",
+    "prisma": "^6.0.1",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.17.0"
   }
 }
