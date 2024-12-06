@@ -1,7 +1,7 @@
 import { Location, Person } from '@prisma/client';
 import { prisma } from './db';
-import { Task } from '@/types';
 import { EMPTY_DAY } from '@/constants';
+import type { Task } from '@/types';
 
 export const getWeek = () =>
   prisma.day.findMany({

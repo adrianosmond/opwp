@@ -1,5 +1,5 @@
 import { getWeek } from '@/utils/api';
-import Week from './_components/Week';
+import WeekView from './_components/WeekView';
 
 export default async function Home() {
   const week = await getWeek();
@@ -14,7 +14,7 @@ export default async function Home() {
           DP
         </div>
       </div>
-      <Week week={week} />
+      <WeekView week={week} />
     </div>
   );
 }

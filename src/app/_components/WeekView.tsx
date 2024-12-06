@@ -4,11 +4,11 @@ import { useEffect, useOptimistic, useRef, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { resetWeek } from '@/utils/actions';
 import { EMPTY_DAY } from '@/constants';
-import type { Week } from '@/types';
 import Day from './Day';
 import { useVisibilityChange } from '../_hooks/usePageVisibilityChange';
+import type { Week } from '@/types';
 
-const Week = ({ week }: { week: Week }) => {
+const WeekView = ({ week }: { week: Week }) => {
   const router = useRouter();
   const pageVisible = useVisibilityChange();
   const firstLoad = useRef(true);
@@ -53,4 +53,4 @@ const Week = ({ week }: { week: Week }) => {
   );
 };
 
-export default Week;
+export default WeekView;

@@ -1,4 +1,4 @@
-import { LocationTask, Task } from './types';
+import type { LocationTask, Task } from './types';
 
 export const EMPTY_DAY: Record<Task & LocationTask, null> = {
   adrianLocation: null,

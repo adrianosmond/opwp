@@ -1,5 +1,5 @@
 import {
-  Day,
+  type Day,
   Location as DBLocation,
   Person as DBPerson,
 } from '@prisma/client';
